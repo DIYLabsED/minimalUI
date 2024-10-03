@@ -6,6 +6,11 @@
   Written by DIY Labs.
   Licensed under GNU GPL V3.
   
+  Source:
   https://github.com/DIYLabsED/minimalUI
+  
+  Documentation:
+  https://github.com/DIYLabsED/minimalUI/wiki  
+  
   
 */
