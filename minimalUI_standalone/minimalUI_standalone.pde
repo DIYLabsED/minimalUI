@@ -24,7 +24,7 @@ class mui_language_t{
    
 }
 
-class mui_button_config{
+class mui_button_color_t{
   
 }
 
