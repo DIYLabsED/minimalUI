@@ -88,11 +88,78 @@ class mui_language_t{
    
 }
 
-class mui_button_color_t{
+// Class for storing fill/stroke colors, and stroke width
+// Can be set through the constructor, or using the set() functions
+// Can be read using get() functions;
+class mui_fillstroke_t{
+  
+  color fillColor;
+  color strokeColor;
+  int strokeWeight;
+  
+  // Contructor one, pass colors and stroke weight
+  mui_fillstroke_t(color f, color s, int w){
+   
+    fillColor = f;
+    strokeColor = s;
+    strokeWeight = w;
+    
+  }
+  
+  // Constructor two, set colors/weight using the set() functions
+  mui_fillstroke_t(){}
+  
+  // set() functions
+  void setFillColor(color c){
+   fillColor = c;    
+  }
+  
+  void setStrokeColor(color c){
+   strokeColor = c;    
+  }
+  
+  void setStrokeWeight(color c){
+   strokeWeight = c;    
+  }
+  
+  // get() functions
+  color getFillColor(){
+   return fillColor; 
+  }
+  
+  color setStrokeColor(){
+   return strokeColor; 
+  }
+  
+  color getStrokeWeight(){
+   return strokeWeight; 
+  }
+  
+}
+
+class mui_button_color_t{  
+  
+  mui_fillstroke_t button;
+  mui_fillstroke_t text;
   
 }
 
 
 class mUIButton{
+  
+  // Pass these in to set which point the button coordinates are inputted from
+  final int MUI_BUTTON_COORD_TOPLEFT = -1;
+  final int MUI_BUTTON_COORD_TOPRIGHT = -2;
+  final int MUI_BUTTON_COORD_BOTTOMLEFT = -3;
+  final int MUI_BUTTON_COORD_BOTTOMRIGHT = -4;
+  final int MUI_BUTTON_COORD_CENTER = -5;
+
+  
+  mui_button_color_t colorInfo;
+  int buttonX, buttonY; // Note: these are from the top-left corner of the button
+  int buttonWidth, buttonHeight;
+  int buttonRound;
+  
+  
   
 }
