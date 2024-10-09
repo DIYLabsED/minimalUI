@@ -15,6 +15,12 @@
   
 */
 
+final int MUI_BUTTON_COORD_TOPLEFT = -1;
+final int MUI_BUTTON_COORD_TOPRIGHT = -2;
+final int MUI_BUTTON_COORD_BOTTOMLEFT = -3;
+final int MUI_BUTTON_COORD_BOTTOMRIGHT = -4;
+final int MUI_BUTTON_COORD_CENTER = -5;
+
 // Class that is used to store color information
 // Colors can be set through the constructor, or using the set() function for the specific color
 // Colors can be read using the get() function for the specific color
@@ -127,7 +133,7 @@ class mui_fillstroke_t{
    return fillColor; 
   }
   
-  color setStrokeColor(){
+  color getStrokeColor(){
    return strokeColor; 
   }
   
@@ -137,29 +143,53 @@ class mui_fillstroke_t{
   
 }
 
-class mui_button_color_t{  
-  
-  mui_fillstroke_t button;
-  mui_fillstroke_t text;
-  
-}
-
-
+// Class for handling buttons
 class mUIButton{
-  
-  // Pass these in to set which point the button coordinates are inputted from
-  final int MUI_BUTTON_COORD_TOPLEFT = -1;
-  final int MUI_BUTTON_COORD_TOPRIGHT = -2;
-  final int MUI_BUTTON_COORD_BOTTOMLEFT = -3;
-  final int MUI_BUTTON_COORD_BOTTOMRIGHT = -4;
-  final int MUI_BUTTON_COORD_CENTER = -5;
-
-  
-  mui_button_color_t colorInfo;
+    
+  mui_fillstroke_t buttonColorInfo;
+  mui_fillstroke_t textColorInfo;
   int buttonX, buttonY; // Note: these are from the top-left corner of the button
   int buttonWidth, buttonHeight;
   int buttonRound;
   
-  
+  mUIButton(int align, int x, int y, int w, int h, int r, mui_fillstroke_t button, mui_fillstroke_t text){
+    
+    if(align == MUI_BUTTON_COORD_TOPLEFT){
+     buttonX = x;
+     buttonY = y;
+    }
+    
+    if(align == MUI_BUTTON_COORD_TOPRIGHT){
+     buttonX = x - w;
+     buttonY = y;
+    }
+    
+    if(align == MUI_BUTTON_COORD_BOTTOMLEFT){
+     buttonX = x;
+     buttonY = y - h;
+    }
+    
+    if(align == MUI_BUTTON_COORD_BOTTOMRIGHT){
+     buttonX = x - w;
+     buttonY = y - h;
+    }
+    
+    if(align == MUI_BUTTON_COORD_CENTER){
+     buttonX = x - (w/2);
+     buttonY = y - (h/2);
+    }
+    
+    buttonWidth = w;
+    buttonHeight = h;
+    buttonRound = r;
+    buttonColorInfo = button;
+    textColorInfo = text;
+     
+    fill(button.getFillColor());
+    stroke(button.getStrokeColor());
+    strokeWeight(button.getStrokeWeight());
+    rect(buttonX, buttonY, w, h, r);
+    
+  }
   
 }
